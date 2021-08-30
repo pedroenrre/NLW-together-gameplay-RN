@@ -11,9 +11,25 @@ import { CategorySelect } from '../../components/CategorySelect';
 import { SmallInput } from '../../components/SmallInput';
 import { TextArea } from '../../components/TextArea';
 import { Button } from '../../components/Button';
+import { GuildProps } from '../../components/Guild';
+import { ModalView } from '../../components/ModalView';
+import Guilds from '../Guilds';
+import { GuildIcon } from '../../components/GuildIcon';
 
 export const AppointmentCreate: React.FC = () => {
   const [category, setCategory] = useState('');
+  const [openGuildsModal, setOpenGuildsModal] = useState(false);
+  const [guild, setGuild] = useState<GuildProps>({} as GuildProps);
+
+  function handleOpenGuilds() {
+    setOpenGuildsModal(true);
+    
+  }
+
+  function handleGuildSelect(guildSelected: GuildProps) {
+    setOpenGuildsModal(false);
+    setGuild(guildSelected);
+  }
 
   return (
     <KeyboardAvoidingView
@@ -37,11 +53,11 @@ export const AppointmentCreate: React.FC = () => {
         />
 
         <View style={styles.form}>
-          <RectButton>
+          <RectButton onPress={handleOpenGuilds}>
             <View style={styles.select}>
-              <View style={styles.image}/>
+              {guild.icon ? <GuildIcon/> : <View style={styles.image}/>}
               <Text style={styles.label}>
-                Selecione um servidor
+                {guild.name ? guild.name : 'Selecione um servidor'}
               </Text>
               <Feather 
                 name="chevron-right"
@@ -101,6 +117,10 @@ export const AppointmentCreate: React.FC = () => {
           </View>
         </View>
       </ScrollView>
+
+      <ModalView visible={openGuildsModal}>
+        <Guilds handleGuildSelect={handleGuildSelect}/>
+      </ModalView>
     </KeyboardAvoidingView>
   );
 }
