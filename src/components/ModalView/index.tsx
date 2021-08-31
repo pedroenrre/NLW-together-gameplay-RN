@@ -12,10 +12,12 @@ import { BackGround } from '../BackGround';
 
 type Props = ModalProps & {
   children: ReactNode;
+  closeModal: () => void;
 }
 
 export function ModalView({
-  children, 
+  children,
+  closeModal,
   ...rest
 }: Props){
   return (
@@ -25,7 +27,7 @@ export function ModalView({
       statusBarTranslucent
       {...rest}
     >
-      <TouchableWithoutFeedback onPress={() =>{}}>
+      <TouchableWithoutFeedback onPress={closeModal}>
         <View style={styles.overlay}>
           <View style={styles.container}>
             <BackGround>

@@ -72,6 +72,7 @@ export const AppointmentDetails: React.FC = () => {
           />
         )}
         ItemSeparatorComponent = {() => <ListDivider />}
+        contentContainerStyle={{marginBottom: 69}}
         style={styles.member}
       />
 

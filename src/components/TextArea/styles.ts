@@ -11,6 +11,9 @@ export const styles = StyleSheet.create({
     fontSize: 13,
     marginRight: 4,
     borderRadius: 8,
-    textAlign: 'center',
+    borderWidth: 1,
+    borderColor: theme.colors.secondary50,
+    padding: 16,
+    textAlignVertical: 'top',
   },
 });
